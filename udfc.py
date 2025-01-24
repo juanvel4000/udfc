@@ -1,6 +1,6 @@
 import os
 def main():
-    version = 0.1
+    version = 0.3
     Entry = {}
     # essential stuff
     Entry['Name'] = input("Enter the name: ")
