@@ -1,4 +1,4 @@
-import configparser, os
+import os
 def main():
     version = 0.1
     Entry = {}
