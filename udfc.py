@@ -1,9 +1,8 @@
 import configparser, os
 def main():
     version = 0.1
-    print(f"uDFC {version}")
     Entry = {}
-    # ask for essential stuff
+    # essential stuff
     Entry['Name'] = input("Enter the name: ")
     Entry['Exec'] = input("Enter the program path: ")
     Entry['Comment'] = input("Enter a comment: ")
@@ -11,7 +10,7 @@ def main():
         Entry['Comment'] = None
     Entry['Workdir'] = input("Enter the working directory (leave empty if unknown): ")
     Entry['Version'] = input("Enter the program's version: ")
-    # ask if the program is ran in terminal
+    # ask if program should be ran in a terminal
     while True:
         Entry['Terminal'] = input("Do you want to open the program in a terminal? [Y/n] ")
         if Entry['Terminal'] in ['n', 'N']:
@@ -23,9 +22,11 @@ def main():
         else:
             print("Invalid response")
             continue
+    # ask for the program type
+    print("Available program types:")
     types = ['Link', 'Application', 'Directory']
     for i in types:
-        print(f"{i}, ", end="")
+        print(i)
     print("")
     while True:
         Entry['Type'] = input("Enter one of the listed Types: ")
@@ -34,6 +35,7 @@ def main():
         else:
             break
     while True:
+        # ask where to write the output
         WillInstall = input("Do you want to install the file? [Y/n] ")
         if WillInstall in ['Y', 'y']:
             os.makedirs(f'{os.path.expanduser('~')}/.local/share/applications', exist_ok=True)
@@ -47,7 +49,6 @@ def main():
                 entry.write(f"Terminal={Entry['Terminal']}\n")
             break
         elif WillInstall in ['N', 'n']:
-                print("[Desktop Entry]")
                 print('[Desktop Entry] ')
                 print(f'Type={Entry['Type']} ')
                 print(f"Version={Entry['Version']} ")
